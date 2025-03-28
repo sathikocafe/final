@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Sathiko Cafe</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#3B82F6',secondary:'#6B17D1'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body { width: 375px; margin: 0 auto; background: #fff; }
+.nav-item.active { color: #F10CEB; }
+.menu-item { opacity: 1; transform: scale(1); transition: all 0.3s ease-in-out; }
+.menu-item:hover { transform: translateY(-5px); }
+.gallery-item:hover { transform: scale(1.05); }
+.reservation-time-slot.selected { background: #3B82F6; color: white; }
+#heroSlider { transition: transform 0.5s ease-in-out; }
+</style>
+</head>
+<body class="relative min-h-screen">
+<nav class="fixed top-0 w-full bg-white/90 backdrop-blur-sm z-50 border-b border-gray-100">
+<div class="flex items-center justify-between px-4 py-3">
+<img src="https://static.readdy.ai/image/f79fbdacb423925016ffa859533828c7/4b53d7921a5d1c9a9122cf1fe7b3d965.jpeg" alt="Saathi Cafe Logo" class="h-10">
+<button id="menuBtn" class="w-8 h-8 flex items-center justify-center">
+<i class="ri-menu-line text-xl"></i>
+</button>
+</div>
+<div id="mobileMenu" class="hidden px-4 py-2 bg-white border-t border-gray-100">
+<a href="#home" class="block py-2 nav-item active">Home</a>
+<a href="#about" class="block py-2 nav-item">About Us</a>
+<a href="#menu" class="block py-2 nav-item">Menu</a>
+<a href="#gallery" class="block py-2 nav-item">Gallery</a>
+<button class="w-full py-2 mt-2 bg-primary text-white !rounded-button">Reserve Table</button>
+</div>
+</nav>
+<main class="pt-16 pb-20">
+<section id="home" class="relative h-[400px] overflow-hidden">
+<div id="heroSlider" class="flex transition-transform duration-500">
+<div class="w-full h-[400px] flex-shrink-0">
+<img src="https://readdy.ai/api/search-image?query=modern coffee shop interior with warm lighting, cozy atmosphere, stylish furniture, and coffee preparation area, professional photography style&width=375&height=400&seq=1&orientation=landscape&flag=0fe1ae0f8c183a0a6a1eead646a6fd1f" class="w-full h-full object-cover" alt="Cafe Interior">
+</div>
+<div class="w-full h-[400px] flex-shrink-0">
+<img src="https://readdy.ai/api/search-image?query=artisanal coffee being prepared by barista, steam rising, beautiful latte art, professional coffee shop photography&width=375&height=400&seq=2&orientation=landscape&flag=f10cb1b3e6df7ee8290d6def7f786c02" class="w-full h-full object-cover" alt="Coffee Preparation">
+</div>
+<div class="w-full h-[400px] flex-shrink-0">
+<img src="https://readdy.ai/api/search-image?query=elegant cafe outdoor seating area with mountain view, comfortable chairs, and ambient lighting, lifestyle photography&width=375&height=400&seq=3&orientation=landscape&flag=a1bd6c8abd47354ca9da8c6e36d7c59c" class="w-full h-full object-cover" alt="Outdoor Seating">
+</div>
+</div>
+<div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+<button class="w-2 h-2 rounded-full bg-white/50 slider-dot active"></button>
+<button class="w-2 h-2 rounded-full bg-white/50 slider-dot"></button>
+<button class="w-2 h-2 rounded-full bg-white/50 slider-dot"></button>
+</div>
+</section>
+<section id="about" class="px-4 py-8">
+<h2 class="text-2xl font-semibold mb-6">About Us</h2>
+<div class="bg-white rounded-lg shadow-lg overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=cozy coffee shop interior with modern design, people enjoying coffee, warm ambiance, lifestyle photography&width=375&height=200&seq=4&orientation=landscape&flag=4ac024a73e37138e8874e63a4a3b8ac7" class="w-full h-48 object-cover" alt="Cafe Ambiance">
+<div class="p-4">
+<p class="text-gray-600 mb-4">Welcome to Sathiko Cafe, where passion meets perfection in every cup. Nestled in the heart of Pokhara, we bring you an unforgettable coffee experience with our carefully curated selection of premium beans and artisanal brewing methods.</p>
+<div class="flex items-center gap-2 text-sm text-gray-500">
+<i class="ri-map-pin-line"></i>
+<span>Pokhara-26, Budibazar, Nepal</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-gray-500 mt-2">
+<i class="ri-phone-line"></i>
+<span>9856023600</span>
+</div>
+</div>
+</div>
+</section>
+<section id="menu" class="px-4 py-8">
+<h2 class="text-2xl font-semibold mb-6">Our Menu</h2>
+<div class="flex gap-2 mb-6 overflow-x-auto whitespace-nowrap">
+<button class="menu-filter px-4 py-2 bg-primary text-white !rounded-button" data-category="all">All</button>
+<button class="menu-filter px-4 py-2 bg-gray-100 !rounded-button" data-category="coffee">Coffee</button>
+<button class="menu-filter px-4 py-2 bg-gray-100 !rounded-button" data-category="food">Food</button>
+<button class="menu-filter px-4 py-2 bg-gray-100 !rounded-button" data-category="desserts">Desserts</button>
+</div>
+<div class="grid grid-cols-2 gap-4" id="menuGrid">
+<div class="menu-item bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300" data-category="coffee">
+<img src="https://readdy.ai/api/search-image?query=professional photo of latte art coffee in elegant cup on wooden table, soft lighting, minimalist style&width=160&height=160&seq=5&orientation=squarish&flag=10711d1306e7894773beb240c1821024" class="w-full h-40 object-cover" alt="Latte Art">
+<div class="p-3">
+<h3 class="font-medium">Signature Latte</h3>
+<p class="text-gray-600 text-sm line-clamp-2">Rich espresso with perfectly steamed milk and artistic presentation</p>
+<p class="text-primary font-semibold mt-1">Nrs.180/-</p>
+</div>
+</div>
+<div class="menu-item bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300" data-category="food">
+<img src="https://readdy.ai/api/search-image?query=gourmet croissant with perfect layers on marble surface, professional food photography&width=160&height=160&seq=6&orientation=squarish&flag=b586a4bf49dc80445f14a61e222cf27c" class="w-full h-40 object-cover" alt="Croissant">
+<div class="p-3">
+<h3 class="font-medium">Butter Croissant</h3>
+<p class="text-gray-600 text-sm line-clamp-2">Flaky, buttery layers baked to golden perfection</p>
+<p class="text-primary font-semibold mt-1">Nrs.199/-</p>
+</div>
+</div>
+<div class="menu-item bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300" data-category="food">
+<img src="https://readdy.ai/api/search-image?query=gourmet club sandwich on rustic wooden board, fresh ingredients, professional food photography&width=160&height=160&seq=11&orientation=squarish&flag=a3a5149b8c21e91f1779ed1c29ac7033" class="w-full h-40 object-cover" alt="Club Sandwich">
+<div class="p-3">
+<h3 class="font-medium">Club Sandwich</h3>
+<p class="text-gray-600 text-sm line-clamp-2">Triple-decker with chicken, bacon, lettuce, and tomato</p>
+<p class="text-primary font-semibold mt-1">Nrs.299/-</p>
+</div>
+</div>
+<div class="menu-item bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300" data-category="food">
+<img src="https://readdy.ai/api/search-image?query=quinoa salad bowl with fresh vegetables and grilled chicken, healthy food photography&width=160&height=160&seq=12&orientation=squarish&flag=bbe442af73cd617419c02dee2e4dc115" class="w-full h-40 object-cover" alt="Quinoa Bowl">
+<div class="p-3">
+<h3 class="font-medium">Quinoa Bowl</h3>
+<p class="text-gray-600 text-sm line-clamp-2">Healthy mix of quinoa, grilled chicken, and fresh vegetables</p>
+<p class="text-primary font-semibold mt-1">Nrs.999/-</p>
+</div>
+</div>
+</div>
+</section>
+<section id="gallery" class="px-4 py-8">
+<h2 class="text-2xl font-semibold mb-6">Gallery</h2>
+<div class="grid grid-cols-2 gap-2">
+<div class="gallery-item rounded-lg overflow-hidden transition-transform duration-300">
+<img src="https://readdy.ai/api/search-image?query=aesthetic coffee shop interior with customers enjoying coffee, natural lighting, lifestyle photography&width=160&height=160&seq=7&orientation=squarish&flag=1cdb2bb0d77503abd428beeb0b520930" class="w-full h-40 object-cover" alt="Cafe Life">
+</div>
+<div class="gallery-item rounded-lg overflow-hidden transition-transform duration-300">
+<img src="https://readdy.ai/api/search-image?query=barista preparing pour-over coffee with precision, steam rising, professional coffee photography&width=160&height=160&seq=8&orientation=squarish&flag=6d18f73e96551ba2d0bafddb3ab3ccce" class="w-full h-40 object-cover" alt="Coffee Making">
+</div>
+<div class="gallery-item rounded-lg overflow-hidden transition-transform duration-300">
+<img src="https://readdy.ai/api/search-image?query=artisanal desserts and pastries display in modern cafe, soft lighting, food photography&width=160&height=160&seq=9&orientation=squarish&flag=9c6db5afa78bb8cf0a5fbf49264a4480" class="w-full h-40 object-cover" alt="Desserts">
+</div>
+<div class="gallery-item rounded-lg overflow-hidden transition-transform duration-300">
+<img src="https://readdy.ai/api/search-image?query=cozy outdoor seating area of cafe with mountain view, lifestyle photography&width=160&height=160&seq=10&orientation=squarish&flag=38f721c6a2beba4cbb4e8c1f7fe47ef7" class="w-full h-40 object-cover" alt="Outdoor Area">
+</div>
+</div>
+</section>
+<section id="reservation" class="px-4 py-8 bg-gray-50">
+<h2 class="text-2xl font-semibold mb-6">Reserve a Table</h2>
+<form id="reservationForm" class="space-y-4">
+<div>
+<input type="text" placeholder="Your Name" class="w-full p-3 rounded-lg border-none bg-white">
+</div>
+<div>
+<input type="email" placeholder="Email Address" class="w-full p-3 rounded-lg border-none bg-white">
+</div>
+<div>
+<input type="date" class="w-full p-3 rounded-lg border-none bg-white">
+</div>
+<div class="grid grid-cols-4 gap-2">
+<button type="button" class="reservation-time-slot p-2 text-center rounded-lg bg-white text-sm">17:00</button>
+<button type="button" class="reservation-time-slot p-2 text-center rounded-lg bg-white text-sm">18:00</button>
+<button type="button" class="reservation-time-slot p-2 text-center rounded-lg bg-white text-sm">19:00</button>
+<button type="button" class="reservation-time-slot p-2 text-center rounded-lg bg-white text-sm">20:00</button>
+</div>
+<div>
+<select class="w-full p-3 rounded-lg border-none bg-white">
+<option>1 Guest</option>
+<option>2 Guests</option>
+<option>3 Guests</option>
+<option>4 Guests</option>
+<option>5+ Guests</option>
+</select>
+</div>
+<button type="submit" class="w-full py-3 bg-primary text-white !rounded-button">Confirm Reservation, Call 9856023600</button>
+</form>
+</section>
+<section class="px-4 py-8">
+<h2 class="text-2xl font-semibold mb-6">Location</h2>
+<div class="h-[200px] rounded-lg overflow-hidden">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3518.153278270018!2d84.0359018!3d28.1848767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3995978093a2cb8f%3A0x985aace7eb4bc8c6!2sSathiko%20Cafe%20(Organic%20Coffee%20Shop)!5e0!3m2!1sen!2snp!4v1711629506203!5m2!1sen!2snp" 
+      width="100%" 
+      height="100%" 
+      style="border:0;" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Sathiko Cafe Location Map">
+    </iframe>
+  </div>
+  <div class="flex justify-center gap-4 mt-6">
+    <a href="https://www.facebook.com/sathikocafe" target="_blank" class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full">
+      <i class="ri-facebook-fill"></i>
+    </a>
+    <a href="https://twitter.com/sathikocafe" target="_blank" class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full">
+      <i class="ri-twitter-fill"></i>
+    </a>
+    <a href="https://www.instagram.com/sathikocafe" target="_blank" class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full">
+      <i class="ri-instagram-fill"></i>
+    </a>
+    <a href="https://www.linkedin.com/company/sathikocafe" target="_blank" class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full">
+      <i class="ri-linkedin-fill"></i>
+    </a>
+  </div>
+</section>
+</main>
+<nav class="fixed bottom-0 w-full bg-white border-t border-gray-100">
+<div class="grid grid-cols-4 gap-0">
+<a href="#home" class="flex flex-col items-center justify-center py-2 nav-item active">
+<i class="ri-home-line text-xl"></i>
+<span class="text-xs mt-1">Home</span>
+</a>
+<a href="#menu" class="flex flex-col items-center justify-center py-2 nav-item">
+<i class="ri-restaurant-line text-xl"></i>
+<span class="text-xs mt-1">Menu</span>
+</a>
+<a href="#gallery" class="flex flex-col items-center justify-center py-2 nav-item">
+<i class="ri-image-line text-xl"></i>
+<span class="text-xs mt-1">Gallery</span>
+</a>
+<a href="#reservation" class="flex flex-col items-center justify-center py-2 nav-item">
+<i class="ri-calendar-line text-xl"></i>
+<span class="text-xs mt-1">Reserve</span>
+</a>
+</div>
+</nav>
+<script>
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+const heroSlider = document.getElementById('heroSlider');
+const sliderDots = document.querySelectorAll('.slider-dot');
+const navItems = document.querySelectorAll('.nav-item');
+const timeSlots = document.querySelectorAll('.reservation-time-slot');
+const reservationForm = document.getElementById('reservationForm');
+const menuFilters = document.querySelectorAll('.menu-filter');
+const menuItems = document.querySelectorAll('.menu-item');
+let currentSlide = 0;
+menuFilters.forEach(filter => {
+filter.addEventListener('click', () => {
+const category = filter.dataset.category;
+menuFilters.forEach(btn => {
+btn.classList.remove('bg-primary', 'text-white');
+btn.classList.add('bg-gray-100');
+});
+filter.classList.remove('bg-gray-100');
+filter.classList.add('bg-primary', 'text-white');
+menuItems.forEach(item => {
+if (category === 'all' || item.dataset.category === category) {
+item.style.display = 'block';
+item.style.opacity = '1';
+item.style.transform = 'scale(1)';
+} else {
+item.style.opacity = '0';
+item.style.transform = 'scale(0.8)';
+setTimeout(() => {
+item.style.display = 'none';
+}, 300);
+}
+});
+});
+});
+menuBtn.addEventListener('click', () => {
+mobileMenu.classList.toggle('hidden');
+});
+function showSlide(index) {
+heroSlider.style.transform = `translateX(-${index * 100}%)`;
+sliderDots.forEach((dot, i) => {
+dot.classList.toggle('bg-white', i === index);
+dot.classList.toggle('bg-white/50', i !== index);
+});
+}
+sliderDots.forEach((dot, index) => {
+dot.addEventListener('click', () => {
+currentSlide = index;
+showSlide(currentSlide);
+});
+});
+setInterval(() => {
+currentSlide = (currentSlide + 1) % 3;
+showSlide(currentSlide);
+}, 5000);
+navItems.forEach(item => {
+item.addEventListener('click', () => {
+navItems.forEach(nav => nav.classList.remove('active'));
+item.classList.add('active');
+});
+});
+timeSlots.forEach(slot => {
+slot.addEventListener('click', () => {
+timeSlots.forEach(s => s.classList.remove('selected'));
+slot.classList.add('selected');
+});
+});
+reservationForm.addEventListener('submit', (e) => {
+e.preventDefault();
+const successMessage = document.createElement('div');
+successMessage.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-lg shadow-lg text-center';
+successMessage.innerHTML = `
+<i class="ri-check-line text-4xl text-primary"></i>
+<p class="mt-2">Reservation Confirmed!</p>
+`;
+document.body.appendChild(successMessage);
+setTimeout(() => successMessage.remove(), 3000);
+});
+</script>
+</body>
+</html>
